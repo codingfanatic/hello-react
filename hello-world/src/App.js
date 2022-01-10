@@ -1,25 +1,20 @@
 import logo from './logo.svg';
 import './App.css';
+import { useEffect } from 'react';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Oh Hai Mark!
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  useEffect(() => {
+    const getRepos = async () => {
+      const url = "https://ghapi.huchen.dev/repositories?since=monthly";
+      const resp = await fetch(url);
+      const body = await resp.json();
+      console.log(body);
+    };
+
+    getRepos();
+  }, []);
+
+  return <div></div>;
 }
 
 export default App;
